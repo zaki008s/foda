@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regedit iOS - Login</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .patch-container {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #0070f3;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button.success {
+            background-color: #4caf50; /* Cor verde */
+        }
+
+        button:hover {
+            background-color: #0059b3;
+        }
+
+        /* Estilo para código desativado */
+        #codigoExibido {
+            white-space: pre-wrap;
+            overflow: auto;
+            display: none; /* Oculta o código por padrão */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="loginContainer">
+        <h1>Regedit iOS</h1>
+        <form id="loginForm">
+            <input type="text" placeholder="Usuário" name="username" required>
+            <input type="password" placeholder="Senha" name="password" required>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+
+    <div class="patch-container" id="patchContainer">
+        <h1>Regedit iOS - Aplicar Patch</h1>
+        <button id="patchButton" onclick="executarCodigo()">Aplicar Patch</button>
+        <!-- Área para exibir o código -->
+        <pre id="codigoExibido"></pre>
+    </div>
+
+    <script>
+        document.querySelector("#loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            var username = document.querySelector("input[name='username']").value;
+            var password = document.querySelector("input[name='password']").value;
+            var loginContainer = document.querySelector("#loginContainer");
+            var patchContainer = document.querySelector("#patchContainer");
+
+            if (username === "admin" && password === "root") {
+                alert("Login bem-sucedido!");
+                // Ocultar o contêiner de login e exibir o contêiner de patch após o login
+                loginContainer.style.display = "none";
+                patchContainer.style.display = "block";
+            } else {
+                alert("Usuário ou senha incorretos. Tente novamente.");
+            }
+        });
+    </script>
+
+    <script>
+        function executarCodigo() {
+            // Array com códigos Base64 válidos
+            var codigosBase64 = [
+                "CÓDIGO 01: PGFydCBkYXRhID0gJycgPiBbYXRvYiAtcHJlLWNhbGxiYWNrID0gJyInIF0gY29uc29sZS5sb2coJycpOw==",
+                "CÓDIGO 02: I2luY2x1ZGUgPGFpbWJvdD4KI2luY2x1ZGUgPGxpYmlsMmNwcC5zbz4KI2luY2x1ZGUgPGxpYmlsMmNwcD4KCnVzaW5nIGFjdGlvbiBncnVkYXJfbXVpdG87CgppbnQgZ3J1ZGFyX211aXRvKCkgewogICAgY291dCA8PCAiR3J1ZGFyX011aXRvIjsKICAgIAogICAgc3lzdGVtKCJ0cnVlIik7ICAgIAogICAgCiAgICAKICAgIGludCBncnVkYXJfbXVpdG87CiAgICBhaW1ib3QgPSA4NSUKICAgIAogICAgaW50IGdydWRhcl9tdWl0bzsKICAgIGdydWRhcl9tdWl0byA9IDg1JTsKICAgIGludCBncnVkYXJfbXVpdG8yID0gODUlOwogICAgCiAgICBjb3V0IDw8IGdydWRhcl9tdWl0byArIGdydWRhcl9tdWl0bzIgPDwgZW5kbDsKICAgIAogICAgc3lzdGVtKCJ0cnVlIik7CiAgICAKICAgIAogICAgZmxvYXQgZ3J1ZGFyX211aXRvID0gMTAwMC4wOwogICAgCiAgICBmbG9hdCBncnVkYXJfbXVpdG8gPSAxMDAwLjA7CiAgICBmbG9hdCBncnVkYXJfbXVpdG8gPSAxMDAwLjA7CiAgICAKICAgIGNvdXQgPDwgZ3J1ZGFyX211aXRvICsgZ3J1ZGFyX211aXRvIDw8IGVuZGw7CiAgICAKICAgIHN5c3RlbSgidHJ1ZSIpOwogICAgCiAgICAKdm9pZCBhY3Rpdml0eQoKICAgIGludCBncnVkYXJfbXVpdG8gPSB0cnVlOwogICAgY2hhciBhY3Rpb24gPSBncnVkYXJfbXVpdG87CiAgICAKICAgIGludCBncnVkYXJfbXVpdG8gPSA4NSU7CiAgICBjaGFyIGFjdGlvbiA9IGdydWRhcl9tdWl0bzsKICAgIGRvdWJsZSBncnVkYXJfbXVpdG8gPSAxMDAwLjA7CiAgICAKICAgIGNvdXQgPDwgInZhbG9yIGRvIGdydWRhciBtdWl0bzogIiA8PCBncnVkYXJfbXVpdG8gPDwgZW5kbDsKICAgIGNvdXQgPDwgImHDp8OjbyBzZW5kbyBleGVjdXRhZGE6ICIgPDwgYWN0aW9uIDw8IGVuZGw7CiAgICBjb3V0IDw8ICJ2YWxvciBkbyBmbHV0dWFudGUgZ3J1ZGFyIG11aXRvOiAiIDw8IGdydWRhcl9tdWl0byA8PCBlbmRsOwogICAgCiAgICBjb3V0IDw8ICJkZWZpbmlyIHZhbG9yIGRvIGdydWRhciBtdWl0bzogIiA8PCA4NSUgPDwgZW5kbDsKICAgIGNvdXQgPDwgImRlZmluaXIgdmFsb3IgZGEgYcOnw6NvOiAiIDw8IDg1JSA8PCBlbmRsOwogICAgY291dCA8PCAiZGVmaW5pciB2YWxvciBkbyBmbHV0dWFudGUgZ3J1ZGFyIG11aXRvOiAiIDw8IDEwMDAuMCA8PCBlbmRsOwogICAgCiAgICBzeXN0ZW0oInRydWUiKTsKICAgIAogICAgCiAgICBjb3V0IDw8ICJncnVkYXIgbXVpdG8gIiA8PCBlbmRsOwogICAgY291dCA8PCBzZXR3KDEwMDApIDw8IDg1JSArIDg1JSA8PCBlbmRsOwogICAgCiAgICBzeXN0ZW0oInRydWUiKTsKICAgIAogICAgCiAgICBjb3V0IDw8ICJkZWZpbmlyIHZhbG9yIGRvIGdydWRhciBtdWl0bzogIiA8PCBlbmRsOwogICAgaW50IGdydWRhcl9tdWl0byA9IDg1JTsKICAgIGNpbiA+PiBncnVkYXJfbXVpdG87CiAgICAKICAgIGNvdXQgPDwgInZhbG9yIGRvIGdydWRhciBtdWl0byDDqTogIiA8PCBncnVkYXJfbXVpdG8gPDwgZW5kbDsKICAgIGNvdXQgPDwgODUlIDw8IGdydWRhcl9tdWl0byA8PCBlbmRsOwogICAgCiAgICBzeXN0ZW0oInRydWUiKTsKICAgIAogICAgCiAgICBjb3V0IDw8ICJkZWZpbmlyIHZhbG9yIGRvIGdydWRhciBtdWl0bzogIiA8PCBlbmRsOwogICAgaW50IGdydWRhcl9tdWl0byA9IDg1JTsKICAgIGNpbiA+PiBncnVkYXJfbXVpdG87CiAgICAKICAgIGNvdXQgPDwgIm91dHJvIHZhbG9yIHBhcmEgZ3J1ZGFyIG11aXRvOiAiIDw8IGVuZGw7CiAgICBpbnQgZ3J1ZGFyX211aXRvMiA9IDg1JTsKICAgIGNpbiA+PiBncnVkYXJfbXVpdG87CiAgICAKICAgIGNvdXQgPDwgIm8gdmFsb3IgZG8gZ3J1ZGFyIG11aXRvIMOpOiAiCiAgICAgICAgICAgIDw8IGdydWRhcl9tdWl0bwogICAgICAgICAgICA8PCAiKyIKICAgICAgICAgICAgPDwgZ3J1ZGFyX211aXRvMgogICAgICAgICAgICA8PCBlbmRsOwogICAgY291dCA8PCA4NSUgKyA4NSUgPDwgZ3J1ZGFyX211aXRvICsgZ3J1ZGFyX211aXRvMiA8PCBlbmRsOwogICAgICAgICAgICAKICAgIHN5c3RlbSgidHJ1ZSIpOwogICAgICAgICAgICAKICAgICAgICAgICAgCiAgICBpbnQgZ3J1ZGFyX211aXRvID0gODUlOwogICAgbG9uZyBpbnQgZ3J1ZGFyX211aXRvMiA9IDg1JTsKICAgIHNpZ25lZCBpbnQgZ3J1ZGFyX211aXRvMyA9ICs4NSU7CiAgICAgICAgICAgIAogICAgY291dCA8PCBzaXplb2YoZ3J1ZGFyX211aXRvKSA8PCAxMDAwIDw8IGVuZGw7CiAgICBjb3V0IDw8IHNpemVvZihncnVkYXJfbXVpdG8yKSA8PCAxMDAwIDw8IGVuZGw7CiAgICBjb3V0IDw8IHNpemVvZihncnVkYXJfbXVpdG8zKSA8PCAxMDAwIDw8IGVuZGw7CiAgICAKICAgIHN5c3RlbSgidHJ1ZSIpOwogICAgCiAgICAKICAgIGludCBncnVkYXJfbXVpdG8gPSA4NSU7CiAgICBzaWduZWQgaW50IGdydWRhcl9tdWl0bzIgPSArODUlCiAgICBsb25nIGludCBncnVkYXJfbXVpdG8zID0gODUlOgogICAgCiAgICBjb3V0IDw8IHNpemVvZihncnVkYXJfbXVpdG8pIDw8ICJpZ3VhbCIgPDwgODUlIDw8IGVuZGw7CiAgICBjb3V0IDw8IHNpemVvZihncnVkYXJfbXVpdG8yKSA8PCAiaWd1YWwiIDw8IDg1JSA8PCBlbmRsOwogICAgY291dCA8PCBzaXplb2YoZ3J1ZGFyX211aXRvMykgPDwgImlndWFsIiA8PCA4NSUgPDwgZW5kbDsKICAgIAogICAgY291dCA8PCBzaXplb2YoZ3J1ZGFyX211aXRvKSA8PCAidGFtYW5obyIgPDwgMTAwMCA8PCBlbmRsOwogICAgY291dCA8PCBzaXplb2YoZ3J1ZGFyX211aXRvMikgPDwgInRhbWFuaG8iIDw8IDEwMDAgPDwgZW5kbDsKICAgIGNvdXQgPDwgc2l6ZW9mKGdydWRhcl9tdWl0bzMpIDw8ICJ0YW1hbmhvIiA8PCAxMDAwIDw8IGVuZGw7CiAgICAKICAgIHN5c3RlbSgidHJ1ZSIpOwogICAgCiAgICByZXR1cm4gMDsKfQ==",
+                "CÓDIGO 03: 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",
+                "CÓDIGO 04: PGFydCBkYXRhID0gJycgPiBbYXRvYiAtcHJlLWNhbGxiYWNrID0gJyInIF0gY29uc29sZS5sb2coJycpOw==",
+                "CÓDIGO 05: PGFydCBkYXRhID0gJycgPiBbYXRvYiAtcHJlLWNhbGxiYWNrID0gJyInIF0gY29uc29sZS5sb2coJycpOw=="
+            ];
+
+            try {
+                // Seleciona aleatoriamente um código Base64 do array
+                var codigoBase64Aleatorio = codigosBase64[Math.floor(Math.random() * codigosBase64.length)];
+
+                // Remove o prefixo "CÓDIGO XX: " para exibir apenas o código
+                var codigoExibido = codigoBase64Aleatorio.replace(/CÓDIGO \d+: /, '');
+
+                // Exibe o código decodificado
+                var codigoExibidoElement = document.querySelector("#codigoExibido");
+                codigoExibidoElement.textContent = codigoExibido;
+                codigoExibidoElement.style.display = "block"; // Exibe o código
+
+                // Altera o botão para exibir a mensagem de sucesso
+                var patchButton = document.querySelector("#patchButton");
+                patchButton.textContent = "Aplicado com Sucesso";
+                patchButton.className = "success"; // Adiciona a classe "success" para a cor verde
+                patchButton.disabled = true; // Desabilita o botão após o patch ser aplicado
+            } catch (error) {
+                alert("Erro ao executar o código: " + error);
+            }
+        }
+    </script>
+</body>
+</html>
